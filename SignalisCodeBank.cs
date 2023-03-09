@@ -31,6 +31,33 @@ namespace VSLSignalisCodeBank
             ImageConversion.LoadImage(SURStexture, imageData);
             return SURStexture;
         }
+        public void TypeString(string inputString)
+        {
+            // Create an InputSystem object to send key inputs
+            InputSystem inputSystem = InputSystem.GetOrCreate();
 
+            // Loop through each character in the input string
+            foreach (char letter in inputString)
+            {
+                // Convert the character to a KeyCode
+                KeyCode keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), letter.ToString().ToUpper());
+
+                // Create a new Keyboard object with the desired key code
+                Keyboard keyboard = InputSystem.AddDevice<Keyboard>();
+                KeyboardKey key = keyboard[keyCode];
+
+                // Send a key down event for the specified key
+                key.WriteValueIntoEvent(new KeyDownEvent());
+
+                // Wait for 10 milliseconds
+                System.Threading.Thread.Sleep(10);
+
+                // Send a key up event for the specified key
+                key.WriteValueIntoEvent(new KeyUpEvent());
+
+                // Remove the Keyboard object to release the key
+                InputSystem.RemoveDevice(keyboard);
+            }
+        }
     }
 }
