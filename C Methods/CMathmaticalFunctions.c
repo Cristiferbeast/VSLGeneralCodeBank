@@ -1,15 +1,27 @@
 #include <stdio.h>
 
-double average (int arr[])
+int average (int arr [])
 {
     int length = array_length(arr);
     int sum = 0;
-    double average;
+    int average;
     for (int i = 0; i < length; i++)
     {
         sum += arr[i];
     }
-    average = (double) sum / length;
+    average = (int) sum / length;
+    return average;
+}
+float average (int arr [])
+{
+    int length = array_length(arr);
+    int sum = 0;
+    float average;
+    for (int i = 0; i < length; i++)
+    {
+        sum += arr[i];
+    }
+    average = (float) sum / length;
     return average;
 }
 
