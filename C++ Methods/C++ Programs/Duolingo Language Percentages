@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	cout << "Duolingo Language Measurements" << endl;
+	int france = 1385;
+	int czech = 136;
+	int frespanol = 44;
+	int spanish = 152 + frespanol;
+	int italian = 213;
+	int allemand = 52;
+	float total = france + czech + italian + spanish + allemand;
+
+	cout << "You know " << france << " words in French" << endl;
+	cout << "French makes up " << (france/total)*100 << " Percentage of Words You Know" <<endl;
+cout << "Your French is at a A2 Level" <<endl; 
+cout << "French has helped you study " << (allemand+frespanol) << " words in other languages"<< endl <<endl;
+
+	cout << "You know " << czech << " words in Czech" << endl;
+	cout << "Czech makes up " << (czech/total)*100 << " Percentage of Words You Know" <<endl << endl;
+
+	cout << "You know " << spanish << " words in Spanish" << endl;
+	cout << "Spanish makes up " << (spanish/total)*100 << " Percentage of Words You Know" <<endl << endl;
+
+	cout << "You know " << italian << " words in Italian" << endl;
+	cout << "Italian makes up " << (italian/total)*100 << " Percentage of Words You Know" <<endl <<endl;
+
+	cout << "You know " << allemand << " words in German" << endl;
+	cout << "German makes up " << (allemand/total)*100 << " Percentage of Words You Know" <<endl <<endl;
+	return 0;
+	}
