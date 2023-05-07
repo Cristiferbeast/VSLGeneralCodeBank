@@ -1,8 +1,6 @@
-﻿using MelonLoader;
+﻿using UnityEngine;
 using System.IO;
-using UnityEngine;
-using UnityEngine.IO;
-using UnityEngine.SceneManagement;
+
 
 namespace VSLSignalisCodeBank
 {
@@ -31,5 +29,34 @@ namespace VSLSignalisCodeBank
             ImageConversion.LoadImage(SURStexture, imageData);
             return SURStexture;
         }
-    }
+
+        public static GameObject SUMAModelCall(string mainFileBranch, string modelName)
+        {
+            string customreplika = Path.Combine(mainFileBranch, modelName);
+            if (!File.Exists(customreplika))
+            {
+                MelonLoader.MelonLogger.Msg(modelName, " Model Not Found ");
+                return null;
+            }
+            GameObject model = Resources.Load<GameObject>(modelName);
+            if (model == null)
+            {
+                MelonLoader.MelonLogger.Msg(modelName, " Model Could Not Load ");
+                return null;
+            }
+            return model;
+        }
+        public static MeshRenderer SUMAModelCall (GameObject model)
+        {
+            MeshRenderer renderer = new MeshRenderer();
+            renderer = model.GetComponent<MeshRenderer>();
+            if (renderer == null)
+            {
+                MelonLoader.MelonLogger.Msg("Render Not Found, Check that File is Proper");
+                return null;
+            }
+            return renderer;
+        }
+           
+}
 }
