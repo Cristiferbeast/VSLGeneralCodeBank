@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.IO;
 
 
@@ -30,7 +30,10 @@ namespace VSLSignalisCodeBank
             return SURStexture;
         }
 
-        public static GameObject SUMAModelCall(string mainFileBranch, string modelName)
+    }
+    public class SUMA
+    {
+        public static GameObject ModelCall(string mainFileBranch, string modelName)
         {
             string customreplika = Path.Combine(mainFileBranch, modelName);
             if (!File.Exists(customreplika))
@@ -46,7 +49,7 @@ namespace VSLSignalisCodeBank
             }
             return model;
         }
-        public static MeshRenderer SUMAModelCall (GameObject model)
+        public static MeshRenderer ModelCall(GameObject model)
         {
             MeshRenderer renderer = new MeshRenderer();
             renderer = model.GetComponent<MeshRenderer>();
@@ -57,6 +60,24 @@ namespace VSLSignalisCodeBank
             }
             return renderer;
         }
-           
-}
+        public static void Outfit (GameObject parent, GameObject model, float scaleFactor)
+        {
+            //Needs Model to be Insatiated Before Use, Insatatation can be done by SUMA.Spawn or normal Insatiation
+            if (parent == null) { MelonLoader.MelonLogger.Msg("Parent Not Found, Check that File is Proper");}
+            if (model == null) { MelonLoader.MelonLogger.Msg("Model Not Found, Check that File is Proper"); }
+            //Offset Coords are Experimental
+            Vector3 offset = new Vector3(1f, 2f, 3f);
+            model.transform.position = parent.transform.position + offset;
+            model.transform.rotation = parent.transform.rotation;
+            model.transform.localScale *= scaleFactor;
+            model.transform.parent = parent.transform;
+        }
+        public static void Spawn (GameObject model, GameObject parent, Vector3 localposition, Quaternion rotation)
+        {
+            GameObject spawned = GameObject.Instantiate(model);
+            spawned.transform.parent = parent.transform;
+            model.transform.position = parent.transform.position + localposition;
+            model.transform.rotation = rotation;
+        }
+    }
 }
