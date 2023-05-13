@@ -12,14 +12,13 @@ namespace VSLCodeBankCPP
     }
     class Stat{
         static float CertainityRange(float participants, float percentage)
-        { 
-            float temp;
-            temp = 1-percentage;
-            temp *= percentage/100;
-            float temp2; 
-            temp /= sqrt(percentage);
-            temp *= 1.96f;
-            return temp; 
-        }
+        {
+		float temp;
+		temp = 1-percentage;
+		temp *= percentage/100;
+		temp /= sqrt(percentage);
+		temp *= 1.96f;
+		return temp;
+	}
     }
 ;}
