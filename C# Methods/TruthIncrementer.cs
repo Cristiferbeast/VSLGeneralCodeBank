@@ -36,9 +36,3 @@ class Program {
         }
     }
 }
-This program initializes two integer variables, yes and no, to 0. It then enters an infinite loop that repeatedly prompts the user to enter one of four possible inputs: "yes", "no", "results", or "end".
-
-If the user enters "yes", the program increments the yes variable by
-
-
-
