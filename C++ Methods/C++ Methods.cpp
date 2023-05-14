@@ -16,7 +16,7 @@ namespace VSLCodeBankCPP
 		float temp;
 		temp = 1-percentage;
 		temp *= percentage/100;
-		temp /= sqrt(percentage);
+		temp /= sqrt(participants);
 		temp *= 1.96f;
 		return temp;
 	}
