@@ -56,6 +56,19 @@ namespace VSLSignalisCodeBank
             UnityEngine.Camera VHSComponent = VHS.GetComponent<UnityEngine.Camera>();
             VHSComponent.orthographic = false;
         }
+        public bool GOErrorCatch(string ObjectName, GameObject parent)
+        {
+            try
+            {
+                GameObject AngCamRig = parent.transform.Find(ObjectName).gameObject;
+                return false;
+            }
+            catch
+            {
+                MelonLoader.MelonLogger.Msg("Error", ObjectName, "Not Found");
+                return true;
+            }
+        }
     }
     public class SUMA
     {
