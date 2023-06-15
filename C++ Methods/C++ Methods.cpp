@@ -10,6 +10,12 @@ namespace VSLCodeBankCPP
 	    }
 	    return inputString;
     }
+				string ReverseString(const string& input)
+				{
+    string reversedString = input;
+    reverse(reversedString.begin(), reversedString.end());
+    return reversedString;
+				}
     class Stat{
         static float CertainityRange(float participants, float percentage)
         {
