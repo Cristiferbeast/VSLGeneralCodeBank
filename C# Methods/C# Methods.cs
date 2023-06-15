@@ -34,5 +34,11 @@ namespace VSLCSharpCodeBank
             string results =  String.Format("{0:D2}:{1:D2}", hours, minutes);
             return results;
         }
+        static string ReverseString(string input)
+        {
+            char[] charArray = input.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
     }
 }
