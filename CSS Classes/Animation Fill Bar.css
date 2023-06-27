@@ -1,0 +1,15 @@
+.antibiotics-bar {
+  width: 0%;
+  height: 30px;
+  background-color: blue;
+  animation: fill-progress 36s linear infinite;
+}
+
+@keyframes fill-progress {
+  0% {
+	width: 0%;
+  }
+  100% {
+	width: 100%;
+  }
+}
