@@ -15,3 +15,20 @@ function searchHeadings() {
         }
     }
 }
+function convertToVaporwaveText(inputText) {
+  var vaporwaveText = "";
+  for (var i = 0; i < inputText.length; i++) {
+    var c = inputText.charAt(i);
+    if (c !== " ") {
+      var code = inputText.charCodeAt(i);
+      if (code >= 33 && code <= 126) {
+        vaporwaveText += String.fromCharCode(0xFF00 + code - 0x20); //This is the Key Line WhichConverts
+      } else {
+        vaporwaveText += c;
+      }
+    } else {
+      vaporwaveText += c;
+    }
+  }
+  return vaporwaveText;
+}
