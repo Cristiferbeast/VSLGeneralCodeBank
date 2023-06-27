@@ -32,3 +32,24 @@ function convertToVaporwaveText(inputText) {
   }
   return vaporwaveText;
 }
+
+function findzero(arr){
+    let x = 0;
+    let left = 0;
+    let right =arr.length-1;
+    while (left < right)
+    {
+        const sum = arr[left]+arr[right]
+        if(sum === x){
+            console.log(arr[right])
+            console.log(arr[left])
+            break;
+         }
+         else if(sum < x){
+             left++;
+         }
+         else{
+             right++;
+         }
+    }
+}
