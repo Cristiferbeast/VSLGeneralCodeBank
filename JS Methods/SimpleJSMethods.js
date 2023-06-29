@@ -53,3 +53,53 @@ function findzero(arr){
          }
     }
 }
+
+function graph(canvasid, data){
+    //canvasid has to be a string, data has to be an array
+
+    // Get the canvas element
+    const canvas = document.getElementById(canvasid);
+    const context = canvas.getContext('2d');
+
+    // Calculate the graph dimensions
+	const graphWidth = canvas.width - 20;
+	const graphHeight = canvas.height - 20;
+	const columnWidth = graphWidth / data.length;
+
+    // Calculate the maximum value in the data array
+	const maxValue = Math.max(...data);
+
+    //Draw the Graph
+    // Clear the canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the horizontal axis
+	context.beginPath();
+	context.moveTo(10, canvas.height - 10);
+	context.lineTo(canvas.width - 10, canvas.height - 10);
+	context.stroke();
+
+    // Draw the vertical axis
+	context.beginPath();
+	context.moveTo(10, canvas.height - 10);
+	context.lineTo(10, 10);
+	context.stroke();
+
+    // Draw the data points and lines
+	context.beginPath();
+	for (let i = 0; i < data.length; i++) {
+	    const x = 10 + i * columnWidth;
+		const y = canvas.height - 10 - (data[i] / maxValue) * graphHeight;
+		if (i === 0) {
+		    context.moveTo(x, y);
+		} else {
+		    context.lineTo(x, y);
+		}
+		context.stroke();
+		context.beginPath();
+		context.arc(x, y, 4, 0, Math.PI * 2);
+		context.fill();
+		context.stroke();
+	}
+
+}
