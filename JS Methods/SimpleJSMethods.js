@@ -4,9 +4,11 @@ function searchHeadings() {
     var resultsContainer = document.getElementById("results");
     resultsContainer.innerHTML = "";
 
+    var regexPattern = new RegExp(searchInput.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&').split('').join('.?'), 'i');
+
     for (var i = 0; i < headings.length; i++) {
         var title = headings[i].innerText.toLowerCase();
-        if (title.includes(searchInput)) {
+        if (regexPattern.test(title)) {
             var link = document.createElement("a");
             link.href = "#" + headings[i].id;
             link.textContent = headings[i].innerText;
