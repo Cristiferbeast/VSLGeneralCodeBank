@@ -40,5 +40,11 @@ namespace VSLCSharpCodeBank
             Array.Reverse(charArray);
             return new string(charArray);
         }
+        public static string centerText(string text, int spacing=80)
+        {
+            int totalWidth = spacing; 
+            string centeredText = text.PadLeft((totalWidth + text.Length) / 2).PadRight(totalWidth);
+            return centeredText;
+        }
     }
 }
