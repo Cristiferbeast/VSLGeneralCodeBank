@@ -3,19 +3,21 @@ using namespace std;
 
 namespace VSLCodeBankCPP
 {
-    string tolower(string inputString) 
-    {
-	    for (char& c : inputString) {
-		    c = std::tolower(c);
-	    }
-	    return inputString;
+    class StringManipulation{
+        static string tolower(string inputString) 
+        {
+	        for (char& c : inputString) {
+		        c = std::tolower(c);
+	        }
+	        return inputString;
+        }
+		static string ReverseString(const string& input)
+		{
+            string reversedString = input;
+            reverse(reversedString.begin(), reversedString.end());
+            return reversedString;
+		}
     }
-				string ReverseString(const string& input)
-				{
-    string reversedString = input;
-    reverse(reversedString.begin(), reversedString.end());
-    return reversedString;
-				}
     class Stat{
         static float CertainityRange(float participants, float percentage)
         {
