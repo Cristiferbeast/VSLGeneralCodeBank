@@ -29,6 +29,17 @@ namespace VSLCodeBankCPP
 		    return temp;
 	    }
     }
+    class Algebra{
+        public:
+        double solveLinearEquation(const std::string& equation) {
+            std::istringstream iss(equation);
+            double a, b, c;
+            char x, equal;
+            iss >> a >> x >> equal >> b >> c;
+            return (c - b) / a;
+        }
+    };
+
     class Conversions{
         static int tempC(int F)
         {
