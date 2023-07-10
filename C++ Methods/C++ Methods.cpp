@@ -29,16 +29,36 @@ namespace VSLCodeBankCPP
 		    return temp;
 	    }
     }
-    class Algebra{
-        public:
-        double solveLinearEquation(const std::string& equation) {
-            std::istringstream iss(equation);
-            double a, b, c;
-            char x, equal;
-            iss >> a >> x >> equal >> b >> c;
-            return (c - b) / a;
-        }
-    };
+	class Algebra{
+    	public:
+    	double solveLinearEquation(const std::string& equation) {
+        	std::istringstream iss(equation);
+        	double a = 1.0, b = 0.0, c = 0.0;
+        	char x, equal;
+
+	        if (iss.peek() == 'x') {
+    	        x = 'x';
+        	    equal = '=';
+            	iss >> x >> equal >> b >> equal >> c;
+	        } else {
+    	        iss >> a >> x >> equal >> b >> equal >> c;
+        	}
+
+	        // Handle the case where there is no coefficient for x
+    	    if (a == 0.0) {
+        	    if (b == 0.0) {
+            	    // Invalid equation: no solution
+                	throw std::invalid_argument("Invalid equation");
+	            } else {
+    	            // Invalid equation: infinite solutions
+        	        throw std::invalid_argument("Infinite solutions");
+            	}
+	        }
+
+    	    // Calculate and return the solution
+        	return (c - b) / a;
+    	}
+	};
 
     class Conversions{
         static int tempC(int F)
