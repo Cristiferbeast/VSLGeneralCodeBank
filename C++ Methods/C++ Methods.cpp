@@ -58,6 +58,28 @@ namespace VSLCodeBankCPP
     	    // Calculate and return the solution
         	return (c - b) / a;
     	}
+	double findSlope(const std::string& equation) {
+        	std::istringstream iss(equation);
+        	double a = 1.0, b = 0.0, c = 0.0;
+        	char x, y, equal;
+
+        	if (iss.peek() == 'x') {
+            		x = 'x';
+            		y = 'y';
+            		equal = '=';
+            	iss >> x >> equal >> b >> y >> equal >> c;
+        	} else {
+            	iss >> a >> x >> equal >> b >> y >> equal >> c;
+        	}
+
+        	// Handle the case where there is no coefficient for y
+        	if (b == 0.0) {
+            	throw std::invalid_argument("Invalid equation");
+        	}
+
+        	// Calculate and return the slope
+        	return -a / b;
+    }
 	};
 
     class Conversions{
