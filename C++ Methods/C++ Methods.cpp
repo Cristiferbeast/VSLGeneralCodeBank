@@ -17,6 +17,15 @@ namespace VSLCodeBankCPP
             reverse(reversedString.begin(), reversedString.end());
             return reversedString;
 		}
+        std::string removeSpaces(const std::string& str) {
+            std::string result;
+            for (char ch : str) {
+                if (ch != ' ') {
+                    result += ch;
+                }
+            }
+            return result;
+        }
     }
     class Stat{
         static float CertainityRange(float participants, float percentage)
@@ -58,7 +67,7 @@ namespace VSLCodeBankCPP
     	    // Calculate and return the solution
         	return (c - b) / a;
     	}
-	double findSlope(const std::string& equation) {
+	    double findSlope(const std::string& equation) {
         	std::istringstream iss(equation);
         	double a = 1.0, b = 0.0, c = 0.0;
         	char x, y, equal;
@@ -79,8 +88,30 @@ namespace VSLCodeBankCPP
 
         	// Calculate and return the slope
         	return -a / b;
-    }
-	};
+        }
+        
+        std::pair<double, double> quadraticFormula(const std::string& equation) {
+            std::string equationNoSpaces = removeSpaces(equation);
+            std::istringstream iss(equationNoSpaces);
+            double a = 0.0, b = 0.0, c = 0.0;
+            char ch;
+
+            if (!(iss >> a >> ch) || ch != 'x' || !(iss >> ch) || ch != '^' || !(iss >> ch) || ch != '2' || !(iss >> ch) || ch != '+' || !(iss >> b >> ch) || ch != 'x' || !(iss >> ch) || ch != '+' || !(iss >> c)) {
+                throw std::invalid_argument("Invalid equation format");
+            }
+
+            double discriminant = b * b - 4 * a * c;
+
+            if (discriminant < 0) {
+                throw std::domain_error("Complex roots (imaginary part)");
+            }
+
+            double sqrtDiscriminant = std::sqrt(discriminant);
+            double root1 = (-b + sqrtDiscriminant) / (2 * a);
+            double root2 = (-b - sqrtDiscriminant) / (2 * a);
+            return std::make_pair(root1, root2);
+        }
+    };
 
     class Conversions{
         static int tempC(int F)
