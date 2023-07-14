@@ -111,6 +111,26 @@ namespace VSLCodeBankCPP
             double root2 = (-b - sqrtDiscriminant) / (2 * a);
             return std::make_pair(root1, root2);
         }
+        std::string squareFraction(const std::string& fraction) {
+        // Parse the fraction
+        std::istringstream iss(fraction);
+        char openingBracket, slash, closingBracket;
+        int numerator, denominator;
+
+        if (!(iss >> openingBracket >> numerator >> slash >> denominator >> closingBracket) ||
+            openingBracket != '(' || slash != '/' || closingBracket != ')') {
+            throw std::invalid_argument("Invalid fraction format");
+        }
+
+        // Calculate the square
+        int squaredNumerator = numerator * numerator;
+        int squaredDenominator = denominator * denominator;
+
+        // Return the squared fraction as a string
+        std::ostringstream oss;
+        oss << "(" << squaredNumerator << "/" << squaredDenominator << ")";
+        return oss.str();
+        }
     };
 
     class Conversions{
