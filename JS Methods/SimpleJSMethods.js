@@ -17,6 +17,17 @@ function searchHeadings() {
         }
     }
 }
+function scrollToHeading(event) {
+    var targetHeadingText = event.target.textContent;
+    var headings = document.querySelectorAll("h1, h2, h3");
+
+    for (var i = 0; i < headings.length; i++) {
+      if (headings[i].innerText === targetHeadingText) {
+        headings[i].scrollIntoView({ behavior: "smooth" });
+        break;
+      }
+    }
+}
 function convertToVaporwaveText(inputText) {
   var vaporwaveText = "";
   for (var i = 0; i < inputText.length; i++) {
