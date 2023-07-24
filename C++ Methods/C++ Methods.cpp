@@ -7,6 +7,14 @@ namespace VSLBranchless{
             d[i] -= 32 * (d[i] >= 'a' && d[i] <= 'z')
         }
     }
+    int abs(int x) {
+        int mask = x >> (sizeof(int) * 8 - 1);
+        return (x + mask) ^ mask;
+    }
+    int maxBranchless(int a, int b) {
+        int mask = (a - b) >> (sizeof(int) * 8 - 1);
+        return (a & ~mask) | (b & mask);
+    }
 }
 
 namespace VSLCodeBankCPP
