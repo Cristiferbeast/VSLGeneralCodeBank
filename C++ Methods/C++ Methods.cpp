@@ -1,6 +1,14 @@
 #include <iostream>
 using namespace std;
 
+namespace VSLBranchless{
+    void toUpper(char* d, int count){
+        for(int i =0; i < count; i++){
+            d[i] -= 32 * (d[i] >= 'a' && d[i] <= 'z')
+        }
+    }
+}
+
 namespace VSLCodeBankCPP
 {
     class StringManipulation{
