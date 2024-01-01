@@ -1,0 +1,12 @@
+{{ $originalChannelID := .Channel.ID }}
+{{ $matches := reFindAllSubmatches `https:\/\/([a-z]+)\.fandom\.com\/wiki\/([^\/]+)` .Message.Content }}
+{{ $pageTitle := index (index $matches 0) 2 }}
+
+{{ $restOfMessage := reReplace `https:\/\/([a-z]+)\.fandom\.com\/wiki\/([^\/]+)` .Message.Content "" }}
+{{ $restOfMessage = printf "%s" $restOfMessage }}
+
+{{ $wikiGGLink := printf "https://signalis.wiki.gg/wiki/%s" $pageTitle }}
+{{ $responseMessage := printf "Fandom is bad for the community, please use Wiki.gg! \n The wiki.gg version of the link you provided may be found here: %s\n\n %s" $wikiGGLink $restOfMessage }}
+
+{{ $messageID := sendMessageRetID $originalChannelID $responseMessage }}
+{{ deleteMessage nil .Message.ID }}
